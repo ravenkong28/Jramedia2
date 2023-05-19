@@ -37,6 +37,8 @@
                                 <div class="mb-4 text-center">
                                     <h3>Register</h3>
                                 </div>
+
+                                <form action="{{ route('products.store') }}" method="post">
                                 <form action="/register" method="post">
                                     @csrf
                                     <div class="form-group">
@@ -72,6 +74,7 @@
                                             <a href="/login" class="forgot-pass">Log In Here!</a>
                                         </span>
                                     </div>
+
                                     <div class = "d-flex justify-content-center">
                                         <a href="/register"><input type="submit" value="Register" class="btn text-white btn-primary"></a>
                                     </div>
