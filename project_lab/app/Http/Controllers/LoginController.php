@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -18,6 +19,30 @@ class LoginController extends Controller
         ]);
     }
 
+    public function authenticate(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required',
+            'password' => 'required|min:8|max:20'
+        ]);
+        
+        if(Auth::attempt($credentials)){
+            $request->session()->regenerate();
+            // dd(auth()->user()->name);
+            return redirect()->intended('/home');
+        }
+
+        return back()->with('loginError', 'Invalid Credential!');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
+        
+    }
     /**
      * Show the form for creating a new resource.
      *

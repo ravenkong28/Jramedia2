@@ -18,6 +18,23 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         
+        @auth
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Profile
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <p>Welcome, {{ auth()->user()->name }}</p>
+                    <a class="dropdown-item" href="#">Setting</a>
+                    <form action="/logout" method ="post">
+                        @csrf
+                        <button type ="submit" class="dropdown-item">Log Out</button>
+                    </form>
+                </div>
+            </div>  
+        </div>
+        
+        @else
         <div class="navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li><a href="/login" class="nav-link">Login</a></li>
@@ -25,5 +42,6 @@
                 <li><a href="/about_us" class="nav-link">About Us</a></li>
             </ul>
         </div>
+        @endauth
     </nav>
 </header>

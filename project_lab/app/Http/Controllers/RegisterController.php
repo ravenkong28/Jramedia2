@@ -41,10 +41,12 @@ class RegisterController extends Controller
         // dd($request->all());
         $validatedData = $request->validate([
             'name' => ['required','unique:users'],
-            'email' => 'required|email:dns|unique:users',
+            'email' => 'required|email|unique:users',
             'password' => 'required|min:8|max:20'
         ]);
+        // dd($validatedData);
         
+
         $validatedData['password'] = Hash::make($validatedData['password']);
         User::create($validatedData);
         return redirect('/login')->with('success', 'Registration successfull! Please login');

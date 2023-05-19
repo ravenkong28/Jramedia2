@@ -7,7 +7,7 @@
 <style>
     #box1{
         width:100%;
-        height:475;
+        height:500;
         margin:10px;
         padding:10px;
         border-radius : 25px;
@@ -42,14 +42,21 @@
                                 <div class="mb-4 text-center">
                                     <h3>Log In</h3>
                                 </div>
-                                <form action="#" method="post">
+                                <form action="/login" method="post">
+                                    @csrf
                                     <div class="form-group first">
                                         <label for="email">Your Email</label>
-                                        <input type="email" class="form-control" id="email">
+                                        <input name = "email" type="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder ="name@example.com" autofocus value ="{{ old('email') }}">
                                     </div>
+                                    @error('email')
+                                        <div class = "invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                    
                                     <div class="form-group last mb-4">
                                         <label for="password">Password</label>
-                                        <input type="password" class="form-control" id="password">
+                                        <input name = "password" type="password" class="form-control" id="password">
                                     </div>
                                     <div class="d-flex mb-5 align-items-center">
                                         <label class="control control--checkbox mb-0">
@@ -64,6 +71,12 @@
                                         <input type="submit" value="Log In" class="btn text-white btn-primary">
                                     </div>
                                     
+                                    @if(session()->has('loginError'))
+                                        <div class="alert alert-danger" role="alert">
+                                            {{ session('loginError') }}
+                                        </div>
+                                    @endif
+
                                 </form>
                             </div>
                         </div>
