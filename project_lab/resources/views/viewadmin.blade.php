@@ -29,7 +29,7 @@
                     <div class="card mb-30">
                         <a class="card-img-tiles" href="#" data-abc="true">
                             <div class="inner">
-                                <div class="main-img"><img class = "rounded mx-auto d-block" src="https://i.imgur.com/O0GMYuw.jpg" alt="Category"></div>
+                                <div class="main-img"><img class = "rounded mx-auto d-block" src="Image/pulpen.jpg" alt="Category"></div>
                             </div>
                         </a>
                         <div class="card-body">
@@ -47,7 +47,7 @@
                     <div class="card mb-30">
                         <a class="card-img-tiles" href="#" data-abc="true">
                             <div class="inner">
-                                <div class="main-img"><img class = "rounded mx-auto d-block" src="https://i.imgur.com/O0GMYuw.jpg" alt="Category"></div>
+                                <div class="main-img"><img class = "rounded mx-auto d-block" src="Image/pulpen.jpg" alt="Category"></div>
                             </div>
                         </a>
                         <div class="card-body">
@@ -65,7 +65,7 @@
                     <div class="card mb-30">
                         <a class="card-img-tiles" href="#" data-abc="true">
                             <div class="inner">
-                                <div class="main-img"><img class = "rounded mx-auto d-block" src="https://i.imgur.com/O0GMYuw.jpg" alt="Category"></div>
+                                <div class="main-img"><img class = "rounded mx-auto d-block" src="Image/pulpen.jpg" alt="Category"></div>
                             </div>
                         </a>
                         <div class="card-body">
