@@ -14,7 +14,7 @@ class RegisterController extends Controller
      */
     public function index()
     {
-        return view('register.index',[
+        return view('register',[
             "title"=>"Register"
         ]);
     }
@@ -37,7 +37,13 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        request()->all();
+        // dd($request->all());
+        $request->validate([
+            'name' => ['required','unique:users'],
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8|max:20'
+        ]);
+        
     }
 
     /**
