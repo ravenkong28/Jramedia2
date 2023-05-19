@@ -1,4 +1,4 @@
-@extends('layouts.main')
+ @extends('layouts.main')
 
 @section('header')
     @include('partials.navbar')
@@ -29,6 +29,11 @@
 @section('content')  
     <body id="body">
         <div id="box1" class = "mt-3 mb-2">
+            @if(session()->has('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('success') }}
+                </div>
+            @endif
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 contents mt-5">

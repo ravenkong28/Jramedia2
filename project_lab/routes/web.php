@@ -93,5 +93,3 @@ Route::get('/update_account', function () {
         "title"=>"Update Account"
     ]);
 });
-
-Route::resource('/products', ProductController::class);

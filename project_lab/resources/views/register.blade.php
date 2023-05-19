@@ -38,12 +38,12 @@
                                     <h3>Register</h3>
                                 </div>
 
-                                <form action="{{ route('products.store') }}" method="post">
+                                {{-- <form action="{{ route('products.store') }}" method="post"> --}}
                                 <form action="/register" method="post">
                                     @csrf
                                     <div class="form-group">
                                         <label for="name">Your Name</label>
-                                        <input name ="name" type="text" class="form-control  @error('name') is-invalid @enderror" id="name" aria-describedby="nameHelp" placeholder="Enter Name">
+                                        <input name ="name" type="text" class="form-control  @error('name') is-invalid @enderror" id="name" aria-describedby="nameHelp" placeholder="Enter Name" value = {{ old('name') }}>
                                         @error('name')
                                             <div class = "invalid-feedback">
                                                 {{ $message }}
@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="email">Your Email</label>
-                                        <input name ="email" type="email" class="form-control  @error('email') is-invalid @enderror" id="email" aria-describedby="emailHelp" placeholder="Enter Email">
+                                        <input name ="email" type="email" class="form-control  @error('email') is-invalid @enderror" id="email" aria-describedby="emailHelp" placeholder="Enter Email" value = {{ old('email') }}>
                                         @error('email')
                                             <div class = "invalid-feedback">
                                                 {{ $message }}
