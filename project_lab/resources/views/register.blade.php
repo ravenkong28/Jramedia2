@@ -7,7 +7,7 @@
 <style>
     #box1{
         width:100%;
-        height:475;
+        height:530;
         margin:10px;
         padding:10px;
         border-radius : 25px;
@@ -39,35 +39,57 @@
                                 </div>
                                 <form action="/register" method="post">
                                     @csrf
-                                    <div class="form-group first">
-                                        <label for="username">Your Name</label>
-                                        <input type="text" class="form-control" id="username">
+                                    <div class="form-group">
+                                        <label for="name">Your Name</label>
+                                        <input name ="name" type="text" class="form-control  @error('name') is-invalid @enderror" id="name" aria-describedby="nameHelp" placeholder="Enter Name">
+                                        @error('name')
+                                            <div class = "invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
-                                    <div class="form-group first">
+                                    <div class="form-group">
                                         <label for="email">Your Email</label>
-                                        <input type="email" class="form-control" id="email">
+                                        <input name ="email" type="email" class="form-control  @error('email') is-invalid @enderror" id="email" aria-describedby="emailHelp" placeholder="Enter Email">
+                                        @error('email')
+                                            <div class = "invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
-                                    <div class="form-group last mb-4">
+                                    <div class="form-group">
                                         <label for="password">Password</label>
-                                        <input type="password" class="form-control" id="password">
-                                    </div>
+                                        <input name ="password" type="password" class="form-control  @error('password') is-invalid @enderror" id="password" aria-describedby="passwordHelp" placeholder="Enter Password">
+                                        @error('password')
+                                            <div class = "invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>  
+
                                     <div class="mb-4 text-center">
                                         <span class="text-center"> Already have an account? 
                                             <a href="/login" class="forgot-pass">Log In Here!</a>
                                         </span>
                                     </div>
                                     <div class = "d-flex justify-content-center">
-                                        <input type="submit" value="Register" class="btn text-white btn-primary">
+                                        <a href="/register"><input type="submit" value="Register" class="btn text-white btn-primary"></a>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
+                   
                     <div class="col-md-6 order-md-2 mt-5 d-none d-lg-block">
                         <img src="Image/Login.png" alt="Image" class="img-fluid">
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>  
+        @error('name')
+        <div class = "invalid-feedback">
+            Name is not valid
+        </div>
+        @enderror  
     </body>
 @endsection
