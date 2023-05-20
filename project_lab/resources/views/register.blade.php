@@ -46,7 +46,8 @@
                                         <input name ="name" type="text" class="form-control  @error('name') is-invalid @enderror" id="name" aria-describedby="nameHelp" placeholder="Enter Name" value = {{ old('name') }}>
                                         @error('name')
                                             <div class = "invalid-feedback">
-                                                {{ $message }}
+                                                {{-- {{ $message }} --}}
+                                                Test 123s
                                             </div>
                                         @enderror
                                     </div>

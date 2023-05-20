@@ -46,7 +46,7 @@
                                     @csrf
                                     <div class="form-group first">
                                         <label for="email">Your Email</label>
-                                        <input name = "email" type="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder ="name@example.com" autofocus value ="{{ old('email') }}">
+                                        <input name = "email" type="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder ="name@example.com" autofocus value ="{{ old("email") }}">
                                     </div>
                                     @error('email')
                                         <div class = "invalid-feedback">
@@ -58,7 +58,7 @@
                                         <label for="password">Password</label>
                                         <input name = "password" type="password" class="form-control" id="password">
                                     </div>
-                                    <div class="d-flex mb-5 align-items-center">
+                                    <div class="d-flex mb-4 align-items-center">
                                         <label class="control control--checkbox mb-0">
                                             <input type="checkbox" checked="checked" />
                                             <span class="caption">Remember me</span>
@@ -67,7 +67,7 @@
                                             <a href="/register" class="forgot-pass">Sign Up Here!</a>
                                         </span>
                                     </div>
-                                    <div class = "d-flex justify-content-center">
+                                    <div class = "d-flex justify-content-center mb-3">
                                         <input type="submit" value="Log In" class="btn text-white btn-primary">
                                     </div>
                                     
