@@ -6,9 +6,9 @@
 
 <style>
     #box1{
-        width:100%;
-        height:530;
-        margin:10px;
+        width:80%;
+        height:500;
+        margin-left:10%;
         padding:10px;
         border-radius : 25px;
         background-color:rgb(255, 255, 255);
@@ -38,22 +38,20 @@
                                     <h3>Register</h3>
                                 </div>
 
-                                {{-- <form action="{{ route('products.store') }}" method="post"> --}}
                                 <form action="/register" method="post">
                                     @csrf
                                     <div class="form-group">
                                         <label for="name">Your Name</label>
-                                        <input name ="name" type="text" class="form-control  @error('name') is-invalid @enderror" id="name" aria-describedby="nameHelp" placeholder="Enter Name" value = {{ old('name') }}>
+                                        <input name ="name" type="text" class="form-control @error('name') is-invalid @enderror" id="name" required placeholder="Enter Name" value = {{ old('name') }}>
                                         @error('name')
                                             <div class = "invalid-feedback">
-                                                {{-- {{ $message }} --}}
-                                                Test 123s
+                                                {{ $message }}
                                             </div>
                                         @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="email">Your Email</label>
-                                        <input name ="email" type="email" class="form-control @error('email') is-invalid @enderror" id="email" aria-describedby="emailHelp" placeholder="Enter Email" value = {{ old('email') }}>
+                                        <input name ="email" type="email" class="form-control @error('email') is-invalid @enderror" id="email" required placeholder="Enter Email" value = {{ old('email') }}>
                                         @error('email')
                                             <div class = "invalid-feedback">
                                                 {{ $message }}
@@ -62,7 +60,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="password">Password</label>
-                                        <input name ="password" type="password" class="form-control  @error('password') is-invalid @enderror" id="password" aria-describedby="passwordHelp" placeholder="Enter Password">
+                                        <input name ="password" type="password" class="form-control  @error('password') is-invalid @enderror" id="password" required placeholder="Enter Password">
                                         @error('password')
                                             <div class = "invalid-feedback">
                                                 {{ $message }}
@@ -72,18 +70,36 @@
 
                                     <div class="mb-4 text-center">
                                         <span class="text-center"> Already have an account? 
-                                            <a href="/login" class="forgot-pass">Log In Here!</a>
+                                            <a href="/login" class="forgot-pass"><u>Log In Here!</u></a>
                                         </span>
                                     </div>
 
                                     <div class = "d-flex justify-content-center">
                                         <a href="/register"><input type="submit" value="Register" class="btn text-white btn-primary"></a>
                                     </div>
+
+                                    {{-- @if(session()->has('registerError'))
+                                        @error('name')
+                                            <div class = "alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                        @error('email')
+                                            <div class = "invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                        @error('password')
+                                            <div class = "invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    @endif --}}
                                 </form>
                             </div>
                         </div>
                     </div>
-                   
+                    
                     <div class="col-md-6 order-md-2 mt-5 d-none d-lg-block">
                         <img src="Image/Login.png" alt="Image" class="img-fluid">
                     </div>

@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\AdminAccountController;
+use App\Http\Controllers\AdminTransactionController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,86 +21,64 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome',[
-        "title"=>"welcome"
+        "title"=>"Welcome to Jramedia"
     ]);
-});
+})->middleware('guest');
 
-Route::get('/login', function () {
-    
-});
+Route::get('/about', function () {
+    return view('aboutus',[
+        "title"=>"About Us JRamedia"
+    ]);
+})->middleware('guest');
 
-
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
 
-Route::get('/register', [RegisterController::class, 'index']);
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
+
 Route::get('/home', function () {
-    return view('home',[
+    return view('Home.index',[
         "title"=>"Home Page JRamedia"
     ]);
-});
-Route::get('/about_us', function () {
-    return view('aboutus',[
-        "title"=>"About Us JRamedia"
-    ]);
-});
+})->middleware('auth');
 
-Route::get('/home_admin', function () {
-    return view('homeadmin', [
-        "title"=>"Home Admin"
-    ]);
-});
-
-Route::get('/home_cust', function () {
-    return view('homecust', [
-        "title"=>"Home Customers"
-    ]);
-});
-
-Route::get('/view_product_admin', function () {
-    return view('viewadmin', [
-        "title"=>"View Product (Admin)"
-    ]);
-});
-
-Route::get('/view_product_cust', function () {
-    return view('viewcust', [
-        "title"=>"View Product (Customer)"
-    ]);
-});
-
-Route::get('/add_product', function () {
-    return view('addproduct', [
-        "title"=>"Add New Product"
-    ]);
-});
-
-Route::get('/update_product', function () {
-    return view('updateproduct', [
-        "title"=>"Update Product"
-    ]);
-});
+Route::get('/home/checkSlug', [ItemController::class, 'checkSlug'])->middleware('auth');
+Route::get('/home/view-products', [ItemController::class, 'index'])->middleware('auth');
 
 
-Route::get('/view_transaction', function () {
-    return view('viewtransaction', [
-        "title"=>"View Transaction History"
-    ]);
-});
+
+// Route::get('/home/view-products/{item:slug}', [ItemController::class, 'show'])->middleware('auth');
+// Route::get('/home/view-products/create', [ItemController::class, 'create'])->middleware('auth');
+// Route::post('/home/view-products/create', [ItemController::class, 'store'])->middleware('auth');
+// Route::get('/home/view-products/{item:slug}/edit', [ItemController::class, 'edit'])->middleware('auth');
+// Route::patch('/home/view-products/{item:slug}', [ItemController::class, 'update'])->middleware('auth');
+// Route::delete('/home/view-products/{item:slug}', [ItemController::class, 'destroy'])->middleware('auth');
+
+Route::resource('/home/view-products', ItemController::class)->parameters([
+    'view-products' => 'item:slug'
+])->except('index')->middleware('admin');
 
 
-Route::get('/view_account', function () {
-    return view('viewaccount', [
-        "title"=>"View Account"
-    ]);
-});
+Route::get('/home/view-transactions', [AdminTransactionController::class, 'index']);
+Route::post('/home/view-transaction', [AdminTransactionController::class, 'checkOut'])->name ('checkOut');
 
-Route::get('/update_account', function () {
-    return view('updateaccount', [
-        "title"=>"Update Account"
-    ]);
-});
+// Route::resource('/home/view-transactions', AdminTransactionController::class)->parameters([
+//     'view-transaction' => 'transaction:id'
+// ])->middleware('admin');
+
+
+Route::resource('/home/view-accounts', AdminAccountController::class)->parameters([
+    'view-accounts' => 'user:id'
+])->middleware('admin');
+
+Route::post('/home/my-cart/{id}', [CartController::class, 'addCart'])->name('addCart')->middleware('auth');
+// Route::get('/home/my-cart/', [CartController::class, 'index'])->middleware('auth');
+
+
+Route::resource('/home/my-cart', CartController::class)->parameters([
+    'my-cart' => 'cart:id'
+])->middleware('auth');

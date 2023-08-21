@@ -1,4 +1,3 @@
-
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -14,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id()->unique();
+        Schema::create('types', function (Blueprint $table) {
+            $table->id();
             $table->string('name')->unique();
-            // $table->boolean('is_admin')->default(false);
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('types');
     }
 };

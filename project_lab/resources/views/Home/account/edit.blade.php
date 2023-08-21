@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('header')
-    @include('partials.navbar1')
+    @include('partials.navbar')
 @endsection
 
 <style>
@@ -20,7 +20,7 @@
 
     .form-control-label{
         margin-bottom: 0
-    }
+    }   
     
     input, textarea, button{
         padding: 8px 15px;
@@ -75,39 +75,61 @@
             <div class="container">
                 <div class="card gray1">
                     <h1 class="text-center mb-4 text-info">Update Account Form</h1>
-                    <form class="form-card" onsubmit="event.preventDefault()">
-
+                    <form method="post" action="/home/view-accounts/{{ $user->id }}" class="mb-5"  enctype="multipart/form-data">
+                        @method('put')
+                        @csrf
                         <div class="row justify-content-between text-left">
-                            <div class="form-group col-12 flex-column d-flex"> <label class="form-control-label px-3">Username</label> 
-                                <input type="text" id="name" name="name" placeholder="Jramedia" onblur="validate(6)"> 
+                            <div class="form-group col-12 flex-column d-flex"> 
+                                <label for ="name">Username</label> 
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" 
+                                placeholder="Enter New Username..." required autofocus value ="{{ old('name', $user->name) }}"> 
+                                @error('name')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="row justify-content-between text-left">
-                            <div class="form-group col-12 flex-column d-flex"> <label class="form-control-label px-3">Email</label> 
-                                <input type="email" id="email" name="email" placeholder="JRamedia@gmail.com" onblur="validate(6)"> 
+                            <div class="form-group col-12 flex-column d-flex"> 
+                                <label for ="email">Email</label> 
+                                <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
+                                placeholder="Enter New Email..." required value ="{{ old('email', $user->email) }}"> 
+                                @error('email')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror 
                             </div>
                         </div>
 
                         <div class="row justify-content-between text-left">
-                            <div class="form-group col-12 flex-column d-flex"> <label class="form-control-label px-3">Password</label> 
-                                <input type="password" id="password" name="password" placeholder="Jramedia123" onblur="validate(6)"> 
+                            <div class="form-group col-12 flex-column d-flex"> 
+                                <label class="form-control-label px-3">Password</label> 
+                                <input type="password" id="password" name="password" placeholder="Enter New Password..." onblur="validate(6)"> 
                             </div>
                         </div>
-
-                        <div class="row col mb-5">
-                            <div class="form-group d-flex flex-lg-column"> 
+                        <div class="row">
+                            <div class="form-group d-flex flex-lg-row"> 
                                 <label class="input-group-text border-0"> 
                                     <i>User Role</i>
                                 </label>
-                            </div>
-                            <div class="form-group d-flex flex-lg-column">
-                                <select class= "input-group-text text-left" name="role" id="role">
-                                    <option value="admin">admin</option>
-                                    <option value="customer">customer</option>
+                                <select class= "form-select text-left" name="is_admin" id="is_admin">
+                                    @if(old('is_admin', $user->is_admin)==$user->is_admin)
+                                        @if ($user->is_admin == 1)
+                                            <option value="1" selected>Admin</option>
+                                            <option value="0">Customer</option>
+                                        @else
+                                            <option value="0" selected>Customer</option>
+                                            <option value="1">Admin</option>
+                                        @endif
+                                    @endif
                                 </select>
                             </div>
                         </div>
+
+                        
                         
                         <div class="row justify-content-end">
                             <div class="form-group col-12"> <button type="submit" class="btn-block btn-success">Update Account</button> </div>

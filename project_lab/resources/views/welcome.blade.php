@@ -6,9 +6,10 @@
 
 <style>
     #box1{
-        width:100%;
+        width:80%;
         height:500;
-        margin:10px;
+        margin-top:30px;
+        margin-left:10%;
         padding:10px;
         border-radius : 25px;
         background-color:rgb(255, 255, 255);
@@ -31,6 +32,7 @@
     
     #body{
         background-color: #ececec;
+        height:80%;
     }
 </style>
 

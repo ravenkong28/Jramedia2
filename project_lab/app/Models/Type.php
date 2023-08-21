@@ -5,7 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class product extends Model
+class Type extends Model
 {
     use HasFactory;
+
+    protected $guarderd = ['id'];
+
+    public function item(){
+        return $this->hasMany(Item::class);
+    }
 }

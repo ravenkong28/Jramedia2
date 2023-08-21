@@ -11,8 +11,8 @@
     }
 </style>
 
-<footer>
+<footer class="text-body-secondary">
     <div class="p-1 shadow-lg text-center gray text-info bg-light" >    
-        <p class = "mt-3"><small>&copy;2022 Copyright JRamedia Book Store<small></p>
+        <p class = ""><small>&copy;2022 Copyright JRamedia Book Store<small></p>
     </div>
 </footer>
